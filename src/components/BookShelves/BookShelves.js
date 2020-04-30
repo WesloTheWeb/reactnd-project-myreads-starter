@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Books from './Books/Books';
 
@@ -13,9 +13,9 @@ const toggleReading = () => {
 
 const BookShelves = (props) => {
 
-    // const [reading, addToReading] = useState(true);
-    // const [wantToRead, addToWant] = useState(true);
-    // const [completedRead, addToCompleted] = useState(true);
+    const [reading, addToReading] = useState([]);
+    const [wantToRead, addToWant] = useState([]);
+    const [completedRead, addToCompleted] = useState([]);
 
 // Add to Reading
 
