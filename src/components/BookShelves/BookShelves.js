@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Books from './Books/Books';
+import Search from '../Search/Search';
+import * as BooksAPI from '../../BooksAPI';
 
-
-const toggleReading = () => {
-    console.log(`Added to reading`);
-        // addToReading(!reading);
-
-}  
-
+ 
+const getAllResults = () => {
+    BooksAPI.getAll().then(result => console.log(result));
+  };
+   
+  getAllResults();
 
 
 const BookShelves = (props) => {
 
-    const [reading, addToReading] = useState([]);
-    const [wantToRead, addToWant] = useState([]);
-    const [completedRead, addToCompleted] = useState([]);
+    // const [reading, addToReading] = useState([]);
+    // const [wantToRead, addToWant] = useState([]);
+    // const [completedRead, addToCompleted] = useState([]);
 
+    const toggleReading = () => {
+        console.log(`Added to reading`);
+            // addToReading(!reading);
+    }  
+
+    const [status, setStatus] = useState("none")
+
+    const handleChange = e => {
+      setStatus(e.target.value)
+      // api call
+    }
+  
+    
 // Add to Reading
 
     return (
@@ -27,12 +40,13 @@ const BookShelves = (props) => {
             </div>
             <div className="list-books-content">
                 <div>
-                    <div className="bookshelf" >
+                    <section className="bookshelf" >
                         <h2 className="bookshelf-title">Currently Reading</h2>
                         <div className="bookshelf-books">
                             <ol className="books-grid">
                                 <Books
-                                    status={toggleReading}
+                                    status={handleChange}
+                                    newStatus={status}
                                     title='To Kill a Mockingbird'
                                     author='Harper Lee'
                                     cover={`PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_ap`}
@@ -44,8 +58,8 @@ const BookShelves = (props) => {
                                 />
                             </ol>
                         </div>
-                    </div >
-                    <div className="bookshelf">
+                    </section >
+                    <section className="bookshelf">
                         <h2 className="bookshelf-title">Want to Read</h2>
                         <div className="bookshelf-books">
                             <ol className="books-grid">
@@ -61,8 +75,8 @@ const BookShelves = (props) => {
                                 />
                             </ol>
                         </div>
-                    </div>
-                    <div className="bookshelf">
+                    </section>
+                    <section className="bookshelf">
                         <h2 className="bookshelf-title">Read</h2>
                         <div className="bookshelf-books">
                             <ol className="books-grid">
@@ -83,14 +97,10 @@ const BookShelves = (props) => {
                                 />
                             </ol>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
-            <div className="open-search">
-                <Link to="search"><button>Add a book</button></Link>
-                {/* <button onClick={props.search}>Add a book</button> */}
-                {/* <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button> */}
-            </div>
+        <Search />
         </div>
     );
 };
