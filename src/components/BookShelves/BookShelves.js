@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Books from './Books/Books';
 
 
+const toggleReading = () => {
+    console.log(`Added to reading`);
+        // addToReading(!reading);
+
+}  
+
+
+
 const BookShelves = (props) => {
 
-    const [books, addBook] = useState(true);
+    // const [reading, addToReading] = useState(true);
+    // const [wantToRead, addToWant] = useState(true);
+    // const [completedRead, addToCompleted] = useState(true);
+
+// Add to Reading
 
     return (
         <div className="list-books">
             <div className="list-books-title">
                 <h1>MyReads</h1>
+                <button onClick={toggleReading}>Click me</button>
             </div>
             <div className="list-books-content">
                 <div>
@@ -19,6 +32,7 @@ const BookShelves = (props) => {
                         <div className="bookshelf-books">
                             <ol className="books-grid">
                                 <Books
+                                    status={toggleReading}
                                     title='To Kill a Mockingbird'
                                     author='Harper Lee'
                                     cover={`PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_ap`}
