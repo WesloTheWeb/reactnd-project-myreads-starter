@@ -13,28 +13,8 @@ const BookShelves = (props) => {
     // TEST
     const [book, setBook] = useState([]);
 
-    const addBook = () => {
-        return setBook(book)
-    };
-
     useEffect(() => {
-         // BooksAPI.getAll().then(results => addBook(results))
-
-                 BooksAPI.getAll().then(results => console.log(results))
-
-    });
-
-    /* ORIGINAL COPY 
-    useEffect(() => {
-        // BooksAPI.getAll().then(results => addBook(results))
-        BooksAPI.getAll().then(results => addBook(results))
-
-        // BooksAPI.getAll().then(results => console.log(results))
-    });
-
-
-
-    */
+        BooksAPI.getAll().then(results => setBook(book))}, [book]);
 
     return (
         <div className="list-books">
