@@ -21,7 +21,7 @@ const Shelf = (props) => {
                                     </select>
                                 </div>
                             </div>
-                            <div className="book-title">{props.library.title}</div>
+                            <div className="book-title">{props.library}</div>
                             <div className="book-authors">{props.author}</div>
                         </div>
                     </li>
