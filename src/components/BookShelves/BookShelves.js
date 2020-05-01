@@ -15,7 +15,8 @@ const BookShelves = (props) => {
 
     useEffect(() => {
         BooksAPI.get().then(results => setBooks(results))
-      }, [])
+    }, []
+    )
 
     return (
         <div className="list-books">
