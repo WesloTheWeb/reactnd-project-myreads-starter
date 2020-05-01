@@ -1,42 +1,29 @@
 import React, { useState } from 'react';
 import Books from './Books/Books';
 import Search from '../Search/Search';
-import * as BooksAPI from '../../BooksAPI';
-
- 
-const getAllResults = () => {
-    BooksAPI.getAll().then(result => console.log(result));
-  };
-   
-  getAllResults();
-
+// import * as BooksAPI from '../../BooksAPI';
 
 const BookShelves = (props) => {
 
-    // const [reading, addToReading] = useState([]);
-    // const [wantToRead, addToWant] = useState([]);
-    // const [completedRead, addToCompleted] = useState([]);
-
-    const toggleReading = () => {
-        console.log(`Added to reading`);
-            // addToReading(!reading);
-    }  
+    const library = [];
+    const currentlyReading = library.filter(book => book.shelf === "currentlyReading");
+    const wantToRead = library.filter(book => book.shelf === "wantToRead");
+    const read = library.filter(book => book.shelf === "read");
 
     const [status, setStatus] = useState("none")
 
     const handleChange = e => {
-      setStatus(e.target.value)
-      // api call
+        setStatus(e.target.value)
+        // api call
     }
-  
-    
-// Add to Reading
+
+
+    // Add to Reading
 
     return (
         <div className="list-books">
             <div className="list-books-title">
                 <h1>MyReads</h1>
-                <button onClick={toggleReading}>Click me</button>
             </div>
             <div className="list-books-content">
                 <div>
@@ -100,7 +87,7 @@ const BookShelves = (props) => {
                     </section>
                 </div>
             </div>
-        <Search />
+            <Search />
         </div>
     );
 };

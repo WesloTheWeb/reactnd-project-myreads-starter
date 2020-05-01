@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, } from 'react-router-dom';
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 import SearchBooks from './components/SearchBooks/SearchBooks';
 import BookShelves from './components/BookShelves/BookShelves';
@@ -14,6 +14,10 @@ import BookShelves from './components/BookShelves/BookShelves';
  */
 
 const BooksApp = () => {
+
+  useEffect(() => {
+    BooksAPI.getAll().then(results => console.log(results))
+  });
 
   return (
     <BrowserRouter>
