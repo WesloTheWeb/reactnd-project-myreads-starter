@@ -1,6 +1,6 @@
 import React from 'react';
 
-const foo = (props) => {
+const Shelf = (props) => {
     return (
         <section className="bookshelf" >
             <h2 className="bookshelf-title">{props.title}</h2>
@@ -21,7 +21,7 @@ const foo = (props) => {
                                     </select>
                                 </div>
                             </div>
-                            <div className="book-title">{props.title}</div>
+                            <div className="book-title">{props.library}</div>
                             <div className="book-authors">{props.author}</div>
                         </div>
                     </li>
@@ -31,4 +31,4 @@ const foo = (props) => {
 };
 
 
-export default foo;
+export default Shelf;

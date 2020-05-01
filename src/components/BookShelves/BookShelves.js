@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
-// import Books from './Books/Books';
+import React, { useState, useEffect } from 'react';
 import Shelf from './Shelf/Shelf';
 import Search from '../Search/Search';
-// import * as BooksAPI from '../../BooksAPI';
+import * as BooksAPI from '../../BooksAPI';
 
 const BookShelves = (props) => {
 
-    const library = [];
-    const currentlyReading = library.filter(book => book.shelf === "currentlyReading");
-    const wantToRead = library.filter(book => book.shelf === "wantToRead");
-    const read = library.filter(book => book.shelf === "read");
+    // const library = [];
+    // const currentlyReading = library.filter(book => book.shelf === "currentlyReading");
+    // const wantToRead = library.filter(book => book.shelf === "wantToRead");
+    // const read = library.filter(book => book.shelf === "read");
 
-    // const [status, setStatus] = useState("none")
+    // TEST
+    const [book, setBook] = useState([]);
 
-    // const handleChange = e => {
-    //     setStatus(e.target.value)
-    //     // api call
-    // }
+    const addBook = () => {
+        return setBook(book)
+    };
+
+    useEffect(() => {
+         // BooksAPI.getAll().then(results => addBook(results))
+
+                 BooksAPI.getAll().then(results => console.log(results))
+
+    });
+
+    /* ORIGINAL COPY 
+    useEffect(() => {
+        // BooksAPI.getAll().then(results => addBook(results))
+        BooksAPI.getAll().then(results => addBook(results))
+
+        // BooksAPI.getAll().then(results => console.log(results))
+    });
+
+
+
+    */
 
     return (
         <div className="list-books">
@@ -26,11 +44,12 @@ const BookShelves = (props) => {
             <div className="list-books-content">
                 <div>
                     <Shelf
-                        tile={props.title} />
+                        library={book}
+                        title={'Currently Reading'} />
                     <Shelf
-                        tile={props.title} />
+                        title={'Want to Read'} />
                     <Shelf
-                        tile={props.title} />
+                        title={'Read'} />
                 </div>
             </div>
             <Search />
