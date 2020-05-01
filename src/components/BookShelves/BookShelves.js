@@ -11,10 +11,11 @@ const BookShelves = (props) => {
     // const read = library.filter(book => book.shelf === "read");
 
     // TEST
-    const [books, setBook] = useState([]);
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        BooksAPI.getAll().then(results => setBook(books))}, [books]);
+        BooksAPI.get().then(results => setBooks(results))
+      }, [])
 
     return (
         <div className="list-books">
