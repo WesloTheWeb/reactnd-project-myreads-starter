@@ -5,7 +5,7 @@ const Shelf = (props) => {
     // Test to see our array
     console.log(library);
 
-    const { library, title } = props;
+    const { sortBooks, library, title } = props;
     // Local State we use that is destructured
 
     return (
@@ -13,7 +13,7 @@ const Shelf = (props) => {
             <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {library.map(book => (
+                    {sortBooks.map(book => (
                         <li key={book.id}>
                             <div className="book">
                                 <div className="book-top">
