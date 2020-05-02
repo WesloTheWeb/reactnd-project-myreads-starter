@@ -14,7 +14,7 @@ const BookShelves = (props) => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        BooksAPI.get().then(results => setBooks(results))
+        BooksAPI.getAll().then(results => setBooks(results))
     }, []
     )
 
