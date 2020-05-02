@@ -5,18 +5,18 @@ import * as BooksAPI from '../../BooksAPI';
 
 const BookShelves = (props) => {
 
-    const library = [];
-    const currentlyReading = library.filter(book => book.shelf === "currentlyReading");
-    // const wantToRead = library.filter(book => book.shelf === "wantToRead");
-    // const read = library.filter(book => book.shelf === "read");
-
-    // TEST
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
         BooksAPI.getAll().then(results => setBooks(results))
     }, []
     )
+
+
+    const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
+    const wantToRead = books.filter(book => book.shelf === "wantToRead");
+    const read = books.filter(book => book.shelf === "read");
+
 
     return (
         <div className="list-books">
@@ -26,11 +26,16 @@ const BookShelves = (props) => {
             <div className="list-books-content">
                 <div>
                     <Shelf
+                        sortBooks={currentlyReading}
                         library={books}
                         title={'Currently Reading'} />
                     <Shelf
+                        sortBooks={wantToRead}
+
                         title={'Want to Read'} />
                     <Shelf
+                        sortBooks={read}
+
                         title={'Read'} />
                 </div>
             </div>
