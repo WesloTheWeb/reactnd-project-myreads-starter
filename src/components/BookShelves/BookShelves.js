@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Shelf from './Shelf/Shelf';
+import Shelf from './Shelf/2wShelf';
 import Search from '../Search/Search';
 import * as BooksAPI from '../../BooksAPI';
 
