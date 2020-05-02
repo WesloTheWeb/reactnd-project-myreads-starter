@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Shelf from './Shelf/2wShelf';
+import Shelf from './Shelf/Shelf';
 import Search from '../Search/Search';
 import * as BooksAPI from '../../BooksAPI';
 
@@ -31,10 +31,12 @@ const BookShelves = (props) => {
                         title={'Currently Reading'} />
                     <Shelf
                         sortBooks={wantToRead}
+                        library={books}
 
                         title={'Want to Read'} />
                     <Shelf
                         sortBooks={read}
+                        library={books}
 
                         title={'Read'} />
                 </div>
