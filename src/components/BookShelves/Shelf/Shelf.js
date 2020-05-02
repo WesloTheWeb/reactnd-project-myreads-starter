@@ -2,12 +2,14 @@ import React from 'react';
 
 const Shelf = (props) => {
 
+    const { library, status, title } = props;
+
     // Test to see our array
-    console.log(props.library);
+    console.log(library);
 
     return (
         <section className="bookshelf" >
-            <h2 className="bookshelf-title">{props.title}</h2>
+            <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
                     <li>
@@ -18,7 +20,7 @@ const Shelf = (props) => {
                                 <div className="book-shelf-changer">
                                     <select>
                                         <option value="move" disabled>Move to...</option>
-                                        <option onChange={props.status} value={props.newStatus}>Currently Reading</option>
+                                        <option value="Currently Reading">Currently Reading</option>
                                         <option value="wantToRead">Want to Read</option>
                                         <option value="read">Read</option>
                                         <option value="none">None</option>
