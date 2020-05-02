@@ -5,35 +5,30 @@ const Shelf = (props) => {
     // Test to see our array
     console.log(props.library);
 
-    const shelfBook = props.library;
-
     return (
         <section className="bookshelf" >
             <h2 className="bookshelf-title">{props.title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                    {shelfBook.map(book => (
-                        <li>
-                            <div className="book">
-                                <div className="book-top">
-                                    <div className="book-cover"
-                                        style={{ width: 128, height: 193, backgroundImage: `url("http://books.google.com/books/content?id=${props.cover}` }}></div>
-                                    <div className="book-shelf-changer">
-                                        <select>
-                                            <option value="move" disabled>Move to...</option>
-                                            <option onChange={props.status} value={props.newStatus}>Currently Reading</option>
-                                            <option value="wantToRead">Want to Read</option>
-                                            <option value="read">Read</option>
-                                            <option value="none">None</option>
-                                        </select>
-                                    </div>
+                    <li>
+                        <div className="book">
+                            <div className="book-top">
+                                <div className="book-cover"
+                                    style={{ width: 128, height: 193, backgroundImage: `url("http://books.google.com/books/content?id=${props.cover}` }}></div>
+                                <div className="book-shelf-changer">
+                                    <select>
+                                        <option value="move" disabled>Move to...</option>
+                                        <option onChange={props.status} value={props.newStatus}>Currently Reading</option>
+                                        <option value="wantToRead">Want to Read</option>
+                                        <option value="read">Read</option>
+                                        <option value="none">None</option>
+                                    </select>
                                 </div>
-                                <div className="book-title">{book.title}</div>
-                                <div className="book-authors">{book.title}</div>
                             </div>
-                        </li>
-                    ))}
-
+                            <div className="book-title">UWU</div>
+                            <div className="book-authors">{props.author}</div>
+                        </div>
+                    </li>
                 </ol>
             </div>
         </section >);
