@@ -5,8 +5,8 @@ import * as BooksAPI from '../../BooksAPI';
 
 const BookShelves = (props) => {
 
-    // const library = [];
-    // const currentlyReading = library.filter(book => book.shelf === "currentlyReading");
+    const library = [];
+    const currentlyReading = library.filter(book => book.shelf === "currentlyReading");
     // const wantToRead = library.filter(book => book.shelf === "wantToRead");
     // const read = library.filter(book => book.shelf === "read");
 
