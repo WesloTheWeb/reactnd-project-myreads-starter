@@ -13,11 +13,11 @@ const BookShelves = (props) => {
     )
 
     const moveBook = (book, shelf) => {
-        book.shelf = shelf;
+        // book.shelf = shelf;
         
-        const [{books}, setBookPos] = useState({books})
+        const [item, setItemPos] = useState({books})
         // const setBookPos = 
-
+        book.map( b => {})
     }
 
 
