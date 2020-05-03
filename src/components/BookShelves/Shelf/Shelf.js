@@ -5,7 +5,7 @@ const Shelf = (props) => {
     // Test to see our array
     console.log(props.library);
 
-    const { sortBooks, library, title } = props;
+    const { sortBooks, library, title, moveBook } = props;
     // Local State we use that is destructured
 
     return (
@@ -25,8 +25,9 @@ const Shelf = (props) => {
                                         }}>
                                     </div>
                                     <div className="book-shelf-changer">
-                                        <select value={book.shelf} 
-                                            onChange={e => {props.moveBook(book, e.target.value)}}
+                                        <select
+                                            value={book.shelf}
+                                            onChange={e => {moveBook(book, e.target.value) }}
                                         >
                                             <option value="move" disabled>Move to...</option>
                                             <option value="Currently Reading">Currently Reading</option>
