@@ -12,6 +12,14 @@ const BookShelves = (props) => {
     }, []
     )
 
+    const moveBook = (book, shelf) => {
+        book.shelf = shelf;
+        
+        const [{books}, setBookPos] = useState({books})
+        // const setBookPos = 
+
+    }
+
 
     const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
     const wantToRead = books.filter(book => book.shelf === "wantToRead");
@@ -28,17 +36,21 @@ const BookShelves = (props) => {
                     <Shelf
                         sortBooks={currentlyReading}
                         library={books}
-                        title={'Currently Reading'} />
+                        title={'Currently Reading'} 
+                        moveBook={moveBook}
+                        />
                     <Shelf
                         sortBooks={wantToRead}
                         library={books}
-
-                        title={'Want to Read'} />
+                        title={'Want to Read'} 
+                        moveBook={moveBook}
+                        />
                     <Shelf
                         sortBooks={read}
                         library={books}
-
-                        title={'Read'} />
+                        title={'Read'}
+                        moveBook={moveBook}
+                        />
                 </div>
             </div>
             <Search />

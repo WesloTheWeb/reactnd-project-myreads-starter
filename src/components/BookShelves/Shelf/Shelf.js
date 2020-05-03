@@ -3,7 +3,7 @@ import React from 'react';
 const Shelf = (props) => {
 
     // Test to see our array
-    console.log(library);
+    // console.log(library);
 
     const { sortBooks, library, title } = props;
     // Local State we use that is destructured
@@ -25,7 +25,9 @@ const Shelf = (props) => {
                                         }}>
                                     </div>
                                     <div className="book-shelf-changer">
-                                        <select>
+                                        <select value={library.shelf} 
+                                            onChange={e => {props.moveBook(book, e.target.value)}}
+                                        >
                                             <option value="move" disabled>Move to...</option>
                                             <option value="Currently Reading">Currently Reading</option>
                                             <option value="wantToRead">Want to Read</option>
