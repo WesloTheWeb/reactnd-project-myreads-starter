@@ -3,7 +3,7 @@ import React from 'react';
 const Shelf = (props) => {
 
     // Test to see our array
-    console.log(props.library);
+    // console.log(props.library);
 
     const { sortBooks, library, title, moveBook } = props;
     // Local State we use that is destructured
