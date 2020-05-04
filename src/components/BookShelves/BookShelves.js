@@ -74,8 +74,8 @@ const BookShelves = (props) => {
             <div className="list-books-content">
                 <div>
                     {keys.map((shelfName) => (
-                        <Shelf
-                            sortBooks={books[shelfName]}
+                        <Shelf 
+                            sortBooks={books[shelfName]} 
                             title={SHELF_NAMES[shelfName]}
                             moveBook={moveBook}
                             key={shelfName}

@@ -2,10 +2,7 @@ import React from 'react';
 
 const Shelf = (props) => {
 
-    // Test to see our array
-    console.log(props.library);
-
-    const { sortBooks, library, title, moveBook } = props;
+    const { sortBooks, title, moveBook } = props;
     // Local State we use that is destructured
 
     return (
@@ -30,7 +27,7 @@ const Shelf = (props) => {
                                             onChange={e => { moveBook(book, e.target.value) }}
                                         >
                                             <option value="move" disabled>Move to...</option>
-                                            <option value="CurrentlyReading">Currently Reading</option>
+                                            <option value="currentlyReading">Currently Reading</option>
                                             <option value="wantToRead">Want to Read</option>
                                             <option value="read">Read</option>
                                             <option value="none">None</option>
