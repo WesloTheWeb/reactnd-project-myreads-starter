@@ -37,33 +37,27 @@ const BookShelves = (props) => {
     }, []
     )
 
-    // Logic for the Select Values in Shelf.js to move books via the select tag
-    const moveBook = (book, shelName) => {
-
-        /*This is a console log to test our select value to see if our select choice is being
-        read and passed down to the appropriate shelf */
-        console.log(`I am now on ${shelf}`);
-
-
-        /* My Attempt at Mapping out the current state via ID
-        - If the book id is matches the book id of current state, then the shelf will map out as is.
-        If not then return new ID.
-        */
-
-        // I need to access the local state somehow, would {books}.map even work? Tried to assign variable.
-
-        // const newBooks = books.map(b => {
-        //     b.id === book.id ? (b.shelf = shelf) : b;
-        //     return b;
-        // });
-        // setBooks(newBooks); 
+       // Logic for the Select Values in Shelf.js to move books via the select tag
+       const moveBook = (book, shelfName) => {
+        // Add new book to new shelf
+        console.log(shelfName, books)
+        const shelf = books[shelfName].slice(0)
+        shelf.push(book);
+        
+        // Remove old book from old shelf
+        const oldShelfName = book.shelf
+        const oldShelf = books[book.shelf].filter((currentValue) => currentValue.id !== book.id);
+        
+        book.shelf = shelfName;
+      
+        setBooks((prevState) => {
+            return {
+                ...prevState,
+                [shelfName]: shelf,
+                [oldShelfName]: oldShelf
+            }
+        })
     }
-
-
-    // // Logic for filtering book categories of "Currently Reading, Want to Read, and Read"
-    // const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
-    // const wantToRead = books.filter(book => book.shelf === "wantToRead");
-    // const read = books.filter(book => book.shelf === "read");
 
     const keys = Object.keys(books);
 
@@ -75,9 +69,11 @@ const BookShelves = (props) => {
             <div className="list-books-content">
                 <div>
                     {keys.map((shelfName) => (
-                        <Shelf
-                            sortBooks={books[shelfName]}
-                            library={books}
+                        <Shelf 
+                            sortBooks={books[shelfName]} 
+                            title={SHELF_NAMES[shelfName]}
+                            moveBook={moveBook}
+                            key={shelfName}
                         />
                     ))}
                 </div>
@@ -86,6 +82,5 @@ const BookShelves = (props) => {
         </div>
     );
 };
-
 
 export default BookShelves;
