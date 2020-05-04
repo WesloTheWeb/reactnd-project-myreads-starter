@@ -3,17 +3,42 @@ import Shelf from './Shelf/Shelf';
 import Search from '../Search/Search';
 import * as BooksAPI from '../../BooksAPI';
 
+const SHELF_NAMES = {
+    currentlyReading: "Currently Reading",
+    wantToRead: "Want to Read",
+    read: "Read"
+}
+
 const BookShelves = (props) => {
 
-    // Grabbing from our Book API
-    const [books, setBooks] = useState([]);
+    // State as an object, key-value pairs for category.
+    const [books, setBooks] = useState({
+        currentlyReading: [],
+        wantToRead: [],
+        read: []
+    });
+
+
+    // Grabbing the data from our Book API
     useEffect(() => {
-        BooksAPI.getAll().then(results => setBooks(results))
+        BooksAPI.getAll().then(results => {
+            const obj = results.reduce((eccumulator, currentValue) => {
+                // existing array or a new array
+                const shelf = eccumulator[currentValue.shelf] || []
+                // eccumulator.currentlyReading
+                shelf.push(currentValue)
+                return {
+                    ...eccumulator,
+                    [currentValue.shelf]: shelf
+                }
+            }, {})
+            setBooks(obj)
+        })
     }, []
     )
 
     // Logic for the Select Values in Shelf.js to move books via the select tag
-    const moveBook = (book, shelf) => {
+    const moveBook = (book, shelName) => {
 
         /*This is a console log to test our select value to see if our select choice is being
         read and passed down to the appropriate shelf */
@@ -26,19 +51,21 @@ const BookShelves = (props) => {
         */
 
         // I need to access the local state somehow, would {books}.map even work? Tried to assign variable.
-        const bookTitles = { books };
 
-        // bookTitles.map(b => {
+        // const newBooks = books.map(b => {
         //     b.id === book.id ? (b.shelf = shelf) : b;
         //     return b;
         // });
+        // setBooks(newBooks); 
     }
 
-    // Logic for filtering book categories of "Currently Reading, Want to Read, and Read"
-    const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
-    const wantToRead = books.filter(book => book.shelf === "wantToRead");
-    const read = books.filter(book => book.shelf === "read");
 
+    // // Logic for filtering book categories of "Currently Reading, Want to Read, and Read"
+    // const currentlyReading = books.filter(book => book.shelf === "currentlyReading");
+    // const wantToRead = books.filter(book => book.shelf === "wantToRead");
+    // const read = books.filter(book => book.shelf === "read");
+
+    const keys = Object.keys(books);
 
     return (
         <div className="list-books">
@@ -47,24 +74,12 @@ const BookShelves = (props) => {
             </div>
             <div className="list-books-content">
                 <div>
-                    <Shelf
-                        sortBooks={currentlyReading}
-                        library={books}
-                        title={'Currently Reading'}
-                        moveBook={moveBook}
-                    />
-                    <Shelf
-                        sortBooks={wantToRead}
-                        library={books}
-                        title={'Want to Read'}
-                        moveBook={moveBook}
-                    />
-                    <Shelf
-                        sortBooks={read}
-                        library={books}
-                        title={'Read'}
-                        moveBook={moveBook}
-                    />
+                    {keys.map((shelfName) => (
+                        <Shelf
+                            sortBooks={books[shelfName]}
+                            library={books}
+                        />
+                    ))}
                 </div>
             </div>
             <Search />
