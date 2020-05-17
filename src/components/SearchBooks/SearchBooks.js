@@ -4,48 +4,30 @@ import { search } from '../../BooksAPI';
 
 const SearchBooks = (props) => {
 
-    const [query, setQuery] = useState({
+    const [inspect, setInspect] = useState({
         query: "",
         books: []
     });
 
     const searchQuery = () => {
-        setQuery(query);
+        setInspect(inspect);
     }
-
-    // const handleSearch = async e => {
-    //     try {
-    //         const query = e.target.value;
-    //         setQuery([query])
-
-
-    //         if (query.trim()) {
-    //             const results = await search(query);
-    //             if (results.error) {
-    //                 setQuery([])
-
-    //             } else {
-    //                 setQuery(query.books = [results])
-    //             }
-    //         }
-    //     } else {
-            
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-    
 
     const handleSearch = async e => {
         try {
-            const query = e.target.value;
+            const inspect = e.target.value;
             searchQuery();
-            const results = await search(query)
+            const results = await search(inspect)
             if(results.error) {
-                setQuery([])
+                setInspect({
+                    ...inspect,
+                    books: []
+                })
             } else {
-                setQuery(query.books = [results])
+                setInspect({
+                    ...inspect,
+                    books: results
+                })
              }
             console.log(results);
         }
@@ -60,7 +42,7 @@ const SearchBooks = (props) => {
                 <Link to="/">
                     <button className="close-search">Close</button>
                 </Link>
-                <div className="search-books-input-wrapper" value={query}>
+                <div className="search-books-input-wrapper" value={inspect}>
                     {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
               You can find these search terms here:
@@ -74,7 +56,9 @@ const SearchBooks = (props) => {
                 </div>
             </div>
             <div className="search-books-results">
-                <ol className="books-grid"></ol>
+                <ol className="books-grid">
+                     {/* {query.books > 0 && query.books.map( )} */}
+                </ol>
             </div>
         </div>
     );
