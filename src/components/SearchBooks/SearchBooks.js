@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { search } from '../../BooksAPI';
-// import Books from '../BookShelves/Books/Books';
-import Shelf from '../BookShelves/Shelf/Shelf';
+import Books from '../BookShelves/Books/Books';
+// import Shelf from '../BookShelves/Shelf/Shelf';
 
 
 const SearchBooks = (props) => {
@@ -62,7 +62,7 @@ const SearchBooks = (props) => {
                 <ol className="books-grid">
                     {inspect.books.length > 0 && inspect.books.map(book => {
                         return (
-                            <Shelf key={book.id}
+                            <Books key={book.id}
                             {...book} />
                         )
                     })}
