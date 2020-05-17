@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { search } from '../../BooksAPI';
+// import Books from '../BookShelves/Books/Books';
+
 
 const SearchBooks = (props) => {
 
@@ -18,7 +20,7 @@ const SearchBooks = (props) => {
             const inspect = e.target.value;
             searchQuery();
             const results = await search(inspect)
-            if(results.error) {
+            if (results.error) {
                 setInspect({
                     ...inspect,
                     books: []
@@ -28,7 +30,7 @@ const SearchBooks = (props) => {
                     ...inspect,
                     books: results
                 })
-             }
+            }
             console.log(results);
         }
         catch (error) {
@@ -57,7 +59,18 @@ const SearchBooks = (props) => {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                     {/* {query.books > 0 && query.books.map( )} */}
+                    {/* {inspect.books.length > 0 && inspect.books.map(book => {
+                        // const foundShelf = props.books.filter(searchBook => searchBook.id === book.id
+                        const foundShelf = {props.moveBooks})
+                        console.log(foundShelf)
+
+                        return (
+                            <Books
+                                key={book.id}
+                                {...book}
+                            />
+                        );
+                    })} */}
                 </ol>
             </div>
         </div>
