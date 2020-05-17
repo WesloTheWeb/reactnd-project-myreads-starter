@@ -1,5 +1,5 @@
 import React from 'react';
-import sendUpdate from '../../../BooksAPI';
+import * as BooksAPI from '../../../BooksAPI';
 
 const Books = (props) => {
 
@@ -14,7 +14,7 @@ const Books = (props) => {
                         style={{ width: 128, height: 193, 
                             backgroundImage: `url(${props.imageLinks.thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                        <select onChange={(event) => props.sendUpdate(props.id, event.target.value)}> 
+                        <select onChange={(event) => BooksAPI.update(props.id, event.target.value)}> 
                             <option value="move" disabled>Move to...</option>
                             <option value={"Currently Reading"}>Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
