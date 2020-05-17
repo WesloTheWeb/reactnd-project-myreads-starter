@@ -5,6 +5,8 @@ const Shelf = (props) => {
     const { sortBooks, title, moveBook } = props;
     // Local State we use that is destructured
 
+    console.log(props.cover)
+
     return (
         <section className="bookshelf" >
             <h2 className="bookshelf-title">{title}</h2>
