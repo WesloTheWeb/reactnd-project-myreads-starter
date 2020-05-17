@@ -1,7 +1,9 @@
 import React from 'react';
+import sendUpdate from '../../../BooksAPI';
 
 const Books = (props) => {
 
+    // <select onChange={(event) => props.sendUpdate(book.id, event.target.value)}>
 
     return (
         <li>

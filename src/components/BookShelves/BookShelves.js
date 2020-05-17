@@ -84,7 +84,7 @@ const BookShelves = (props) => {
                     ))}
                 </div>
             </div>
-            <Search moveBooks={moveBook} />
+            <Search />
         </div>
     );
 };
